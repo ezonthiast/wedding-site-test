@@ -113,7 +113,6 @@ button{width:100%;padding:14px;border:none;border-radius:10px;background:var(--g
   z-index:10;
 }
 
-/* hidden youtube player */
 #ytplayer{
   position:fixed;
   width:1px;
@@ -128,9 +127,9 @@ button{width:100%;padding:14px;border:none;border-radius:10px;background:var(--g
 
 <body>
 
-<!-- YOUTUBE AUDIO -->
+<!-- YOUTUBE AUDIO (START AT 1:10 = 70s) -->
 <iframe id="ytplayer"
-src="https://www.youtube.com/embed/Q6CROi8SK88?autoplay=1&loop=1&playlist=Q6CROi8SK88&controls=0&mute=1"
+src="https://www.youtube.com/embed/Q6CROi8SK88?autoplay=1&loop=1&playlist=Q6CROi8SK88&controls=0&mute=1&start=70"
 allow="autoplay">
 </iframe>
 
@@ -144,38 +143,32 @@ allow="autoplay">
   </div>
 </div>
 
-<div class="section">
-  <div class="section-inner">
-    <h2>Our Story</h2>
-    <div class="divider"></div>
-    <p>We met in college in 2015. What started as friendship became love that lasted through every season of life.</p>
-  </div>
-</div>
+<div class="section"><div class="section-inner">
+<h2>Our Story</h2>
+<div class="divider"></div>
+<p>We met in college in 2015. What started as friendship became love that lasted through every season of life.</p>
+</div></div>
 
-<div class="section">
-  <div class="section-inner">
-    <h2>Wedding Details</h2>
-    <div class="divider"></div>
-    <div class="details">
-      <div class="detail-box"><strong>Date</strong><br>Jan 3, 2027</div>
-      <div class="detail-box"><strong>Venue</strong><br>Sodretos Royale</div>
-    </div>
-    <iframe class="map" src="https://www.google.com/maps?q=Sodretos+Royale+Marikina&output=embed"></iframe>
-  </div>
+<div class="section"><div class="section-inner">
+<h2>Wedding Details</h2>
+<div class="divider"></div>
+<div class="details">
+<div class="detail-box"><strong>Date</strong><br>Jan 3, 2027</div>
+<div class="detail-box"><strong>Venue</strong><br>Sodretos Royale</div>
 </div>
+<iframe class="map" src="https://www.google.com/maps?q=Sodretos+Royale+Marikina&output=embed"></iframe>
+</div></div>
 
-<div class="section">
-  <div class="section-inner">
-    <h2>RSVP</h2>
-    <div class="divider"></div>
-    <form>
-      <input placeholder="Full Name" required>
-      <input placeholder="Guests" type="number" required>
-      <textarea placeholder="Message"></textarea>
-      <button type="submit">Send RSVP</button>
-    </form>
-  </div>
-</div>
+<div class="section"><div class="section-inner">
+<h2>RSVP</h2>
+<div class="divider"></div>
+<form>
+<input placeholder="Full Name" required>
+<input placeholder="Guests" type="number" required>
+<textarea placeholder="Message"></textarea>
+<button type="submit">Send RSVP</button>
+</form>
+</div></div>
 
 <script>
 const sections=document.querySelectorAll('.section');
@@ -186,12 +179,9 @@ sections.forEach(s=>observer.observe(s));
 
 function toggleMusic(){
   const iframe=document.getElementById('ytplayer');
-  const state=iframe.src;
-  if(state.includes('mute=1')){
-    iframe.src=state.replace('mute=1','mute=0');
-  }else{
-    iframe.src=state.replace('mute=0','mute=1');
-  }
+  iframe.src.includes('mute=1')
+    ? iframe.src=iframe.src.replace('mute=1','mute=0')
+    : iframe.src=iframe.src.replace('mute=0','mute=1');
 }
 </script>
 
