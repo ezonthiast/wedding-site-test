@@ -11,8 +11,8 @@
 :root{
   --gold:#b89b5e;
   --green:#2e7d32;
-  --soft:#f7f3ee;
-  --text:#2b2b2b;
+  --soft:#f8f5f0;
+  --text:#2a2a2a;
 }
 
 *{margin:0;padding:0;box-sizing:border-box;}
@@ -31,9 +31,8 @@ body{
   align-items:center;
   justify-content:center;
   text-align:center;
-  color:white;
   position:relative;
-  background:url('https://images.unsplash.com/photo-1523438097201-512ae7d59c5b') center/cover no-repeat;
+  background:url('https://images.unsplash.com/photo-1523438097201-512ae7d59c5b?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
 }
 
 .hero::after{
@@ -46,7 +45,10 @@ body{
 .hero-content{
   position:relative;
   z-index:1;
-  animation:fadeUp 2s ease;
+  color:white;
+  opacity:0;
+  transform:translateY(20px);
+  animation:fadeIn 2s ease forwards;
 }
 
 .hero h1{
@@ -57,91 +59,79 @@ body{
 
 .hero p{
   margin-top:10px;
-  font-size:1.2rem;
-  opacity:0.9;
+  font-size:1.1rem;
 }
 
-.hero .date{
+.hero small{
+  display:block;
   margin-top:20px;
-  font-weight:500;
-  color:#f5f5f5;
+  opacity:0.85;
 }
 
 /* SECTIONS */
-section{
-  padding:90px 20px;
-  max-width:900px;
-  margin:auto;
+.section{
+  min-height:70vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
   text-align:center;
+  padding:90px 20px;
+  opacity:0;
+  transform:translateY(40px);
+  transition:all 1.2s ease;
+}
+
+.section.visible{
+  opacity:1;
+  transform:translateY(0);
+}
+
+.section-inner{
+  max-width:800px;
 }
 
 h2{
   font-family:'Playfair Display',serif;
-  font-size:2.5rem;
-  margin-bottom:20px;
+  font-size:2.4rem;
   color:var(--green);
+  margin-bottom:20px;
 }
 
-.card{
-  background:white;
-  padding:40px;
-  border-radius:18px;
-  box-shadow:0 20px 40px rgba(0,0,0,0.06);
+p{
+  font-size:1.05rem;
   line-height:1.8;
 }
 
 .divider{
-  width:80px;
+  width:60px;
   height:2px;
   background:var(--gold);
   margin:20px auto;
 }
 
-/* STORY */
-.story{
-  font-size:1.1rem;
-  max-width:700px;
-  margin:auto;
-}
-
 /* DETAILS */
 .details{
-  display:grid;
-  grid-template-columns:1fr 1fr;
+  display:flex;
   gap:20px;
+  justify-content:center;
+  flex-wrap:wrap;
   margin-top:20px;
 }
 
-.details div{
-  background:#fff;
+.detail-box{
+  background:white;
   padding:25px;
   border-radius:15px;
+  min-width:220px;
   box-shadow:0 10px 25px rgba(0,0,0,0.05);
 }
 
 iframe{
   width:100%;
-  height:300px;
+  height:280px;
   border:0;
   border-radius:15px;
   margin-top:25px;
-}
-
-/* GALLERY */
-.gallery{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:15px;
-}
-
-.gallery img{
-  width:100%;
-  border-radius:15px;
-  transition:0.3s;
-}
-
-.gallery img:hover{
-  transform:scale(1.03);
 }
 
 /* RSVP */
@@ -169,11 +159,7 @@ button{
   cursor:pointer;
 }
 
-button:hover{
-  background:#245a27;
-}
-
-/* MUSIC */
+/* MUSIC BUTTON */
 .music{
   position:fixed;
   bottom:20px;
@@ -186,16 +172,10 @@ button:hover{
 }
 
 /* ANIMATION */
-@keyframes fadeUp{
-  from{opacity:0;transform:translateY(30px);}
+@keyframes fadeIn{
   to{opacity:1;transform:translateY(0);}
 }
 
-/* RESPONSIVE */
-@media(max-width:768px){
-  .hero h1{font-size:2.8rem;}
-  .details{grid-template-columns:1fr;}
-}
 </style>
 </head>
 
@@ -212,62 +192,67 @@ button:hover{
   <div class="hero-content">
     <h1>Lorezon & Angelica</h1>
     <p>Together since 2015</p>
-    <div class="date">January 3, 2027 • Sodretos Royale, Marikina</div>
+    <small>January 3, 2027 • Sodretos Royale, Marikina</small>
   </div>
 </div>
 
 <!-- STORY -->
-<section>
-  <h2>Our Story</h2>
-  <div class="divider"></div>
-  <p class="story">
-    We met in college and what started as friendship in 2015 slowly grew into something deeper and more meaningful. Through every challenge and milestone, we chose each other. Now, we celebrate a love that has stood the test of time.
-  </p>
-</section>
+<div class="section">
+  <div class="section-inner">
+    <h2>Our Story</h2>
+    <div class="divider"></div>
+    <p>We met in college in 2015. What started as friendship slowly became something deeper. Through every season of life, we chose each other and grew together into the love we celebrate today.</p>
+  </div>
+</div>
 
 <!-- DETAILS -->
-<section>
-  <h2>Wedding Details</h2>
-  <div class="divider"></div>
-  <div class="details">
-    <div><strong>Ceremony & Reception</strong><br>Sodretos Royale, Marikina</div>
-    <div><strong>Date</strong><br>January 3, 2027</div>
+<div class="section">
+  <div class="section-inner">
+    <h2>Wedding Details</h2>
+    <div class="divider"></div>
+    <div class="details">
+      <div class="detail-box">
+        <strong>Date</strong><br>January 3, 2027
+      </div>
+      <div class="detail-box">
+        <strong>Venue</strong><br>Sodretos Royale, Marikina
+      </div>
+    </div>
+    <iframe src="https://www.google.com/maps?q=Sodretos+Royale+Marikina&output=embed"></iframe>
   </div>
-
-  <iframe src="https://www.google.com/maps?q=Sodretos+Royale+Marikina&output=embed"></iframe>
-</section>
+</div>
 
 <!-- DRESS CODE -->
-<section>
-  <h2>Dress Code</h2>
-  <div class="divider"></div>
-  <div class="card">
-    <strong>Sponsors</strong><br>
-    Gentlemen: Black suits with green accents<br>
-    Ladies: Light yellow gowns
-    <br><br>
-    <strong>Guests</strong><br>
-    Gentlemen: Black suits with brown accents<br>
-    Ladies: Shades of green gowns
+<div class="section">
+  <div class="section-inner">
+    <h2>Dress Code</h2>
+    <div class="divider"></div>
+    <p>
+      <strong>Sponsors:</strong><br>
+      Gentlemen: Black suit with green accents<br>
+      Ladies: Light yellow gowns
+      <br><br>
+      <strong>Guests:</strong><br>
+      Gentlemen: Black suit with brown accents<br>
+      Ladies: Shades of green gowns
+    </p>
   </div>
-</section>
+</div>
 
 <!-- GALLERY -->
-<section>
-  <h2>Gallery</h2>
-  <div class="divider"></div>
-  <div class="gallery">
-    <img src="https://via.placeholder.com/400">
-    <img src="https://via.placeholder.com/400">
-    <img src="https://via.placeholder.com/400">
+<div class="section">
+  <div class="section-inner">
+    <h2>Gallery</h2>
+    <div class="divider"></div>
+    <p>Our memories together will be placed here.</p>
   </div>
-</section>
+</div>
 
 <!-- RSVP -->
-<section>
-  <h2>RSVP</h2>
-  <div class="divider"></div>
-  <div class="card">
+<div class="section">
+  <div class="section-inner">
+    <h2>RSVP</h2>
+    <div class="divider"></div>
     <form id="rsvpForm">
       <input type="text" id="name" placeholder="Full Name" required>
       <input type="number" id="guests" placeholder="Number of Guests" required>
@@ -276,21 +261,23 @@ button:hover{
     </form>
     <p id="responseMsg"></p>
   </div>
-</section>
-
-<footer>
-  <p style="padding:30px;background:#2e7d32;color:white;text-align:center;">
-    We can't wait to celebrate with you 💚
-  </p>
-</footer>
+</div>
 
 <script>
-const music=document.getElementById('music');
-function toggleMusic(){
-  music.paused?music.play():music.pause();
-}
+// Scroll reveal (Canva-style subtle animation)
+const sections=document.querySelectorAll('.section');
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){e.target.classList.add('visible');}
+  });
+},{threshold:0.2});
+sections.forEach(s=>observer.observe(s));
 
-// RSVP placeholder (Google Sheets integration ready)
+// Music
+const music=document.getElementById('music');
+function toggleMusic(){music.paused?music.play():music.pause();}
+
+// RSVP placeholder
 const scriptURL="YOUR_GOOGLE_SCRIPT_URL_HERE";
 document.getElementById("rsvpForm").addEventListener("submit",e=>{
   e.preventDefault();
