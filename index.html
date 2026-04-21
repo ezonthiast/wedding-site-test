@@ -9,8 +9,8 @@
 
 <style>
 :root{
-  --gold:#b89b5e;
-  --green:#2e7d32;
+  --gold:#d8c7a1;
+  --green:#3b4f3b;
   --soft:#e8f5e9;
   --text:#2a2a2a;
 }
@@ -28,38 +28,38 @@ body{
   height:100vh;
   display:flex;
   align-items:center;
-  justify-content:center;
-  text-align:center;
+  justify-content:space-between;
+  padding:60px;
+  background:#3b4f3b;
+  color:#f5e9d4;
   position:relative;
-  background:url('https://images.unsplash.com/photo-1523438097201-512ae7d59c5b?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
 }
 
-.hero::after{
-  content:'';
-  position:absolute;
-  inset:0;
-  background:rgba(0,0,0,0.45);
-}
-
-.hero-content{
-  position:relative;
-  z-index:1;
-  color:white;
-  opacity:0;
-  transform:translateY(20px);
-  animation:fadeIn 2s ease forwards;
-}
+.hero-left{flex:1;z-index:2;}
+.hero-right{flex:1;display:flex;justify-content:center;align-items:center;}
+.hero-right img{width:90%;max-width:500px;opacity:0.9;}
 
 .hero h1{
-  font-family:'Great Vibes','Sloop Script',cursive;
-  font-size:4.2rem;
-  letter-spacing:1px;
+  font-family:'Great Vibes',cursive;
+  font-size:5rem;
+  line-height:1.1;
 }
 
-.hero p{margin-top:10px;}
+.divider{
+  width:80px;
+  height:1px;
+  background:#d8c7a1;
+  margin:20px 0;
+}
 
-.hero small{display:block;margin-top:20px;opacity:0.85;}
+.sub{
+  font-size:1rem;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  opacity:0.9;
+}
 
+/* SECTIONS */
 .section{
   min-height:70vh;
   display:flex;
@@ -72,12 +72,9 @@ body{
   transition:all 1.2s ease;
 }
 
-.section.visible{
-  opacity:1;
-  transform:translateY(0);
-}
+.section.visible{opacity:1;transform:translateY(0);}
 
-.section-inner{max-width:800px;}
+.section-inner{max-width:900px;}
 
 h2{
   font-family:'Playfair Display',serif;
@@ -86,82 +83,98 @@ h2{
   margin-bottom:20px;
 }
 
-.divider{
-  width:60px;
-  height:2px;
-  background:var(--gold);
-  margin:20px auto;
+/* GALLERY */
+.gallery{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:15px;
+  margin-top:20px;
 }
 
-.details{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;}
-.detail-box{background:white;padding:25px;border-radius:15px;min-width:220px;box-shadow:0 10px 25px rgba(0,0,0,0.05);}
+.gallery img{
+  width:100%;
+  height:260px;
+  object-fit:cover;
+  border-radius:15px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.08);
+  transition:0.3s;
+}
+
+.gallery img:hover{
+  transform:scale(1.03);
+}
+
+/* DETAILS */
+.details-box{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;}
+.box{background:white;padding:25px;border-radius:15px;min-width:220px;box-shadow:0 10px 25px rgba(0,0,0,0.05);}
 
 iframe.map{width:100%;height:280px;border:0;border-radius:15px;margin-top:25px;}
 
 input,textarea{width:100%;padding:14px;margin:10px 0;border-radius:10px;border:1px solid #ddd;}
-
 button{width:100%;padding:14px;border:none;border-radius:10px;background:var(--green);color:white;cursor:pointer;}
 
-.music{
-  position:fixed;
-  bottom:20px;
-  right:20px;
-  background:var(--green);
-  color:white;
-  padding:12px 16px;
-  border-radius:50px;
-  cursor:pointer;
-  z-index:10;
-}
+.music{position:fixed;bottom:20px;right:20px;background:var(--green);color:white;padding:12px 16px;border-radius:50px;cursor:pointer;z-index:10;}
 
-#ytplayer{
-  position:fixed;
-  width:1px;
-  height:1px;
-  opacity:0;
-  pointer-events:none;
-}
+#ytplayer{position:fixed;width:1px;height:1px;opacity:0;pointer-events:none;}
 
-@keyframes fadeIn{to{opacity:1;transform:translateY(0);}}
 </style>
 </head>
-
 <body>
 
+<!-- AUDIO -->
 <iframe id="ytplayer"
 src="https://www.youtube.com/embed/Q6CROi8SK88?autoplay=1&loop=1&playlist=Q6CROi8SK88&controls=0&mute=1&start=70"
-allow="autoplay">
-</iframe>
+allow="autoplay"></iframe>
 
 <div class="music" onclick="toggleMusic()">🎵</div>
 
+<!-- HERO -->
 <div class="hero">
-  <div class="hero-content">
-    <h1>Lorezon & Angelica</h1>
-    <p>Together since 2015</p>
-    <small>January 3, 2027 • Sodretos Royale, Marikina</small>
+  <div class="hero-left">
+    <h1>Lorezon<br><span style="font-size:3rem;font-family:Playfair Display">and</span><br>Angelica</h1>
+    <div class="divider"></div>
+    <div class="sub">ARE CELEBRATING THEIR WEDDING ON</div>
+    <p>JANUARY 3, 2027</p>
+    <p>AT SEDRETOS ROYALE</p>
+  </div>
+
+  <div class="hero-right">
+    <img src="/mnt/data/3bba3a1e-a469-4fbd-93f6-e904d1af4391.png" />
   </div>
 </div>
 
+<!-- STORY -->
 <div class="section"><div class="section-inner">
 <h2>Our Story</h2>
-<div class="divider"></div>
-<p>We met in college in 2015. What started as friendship became love that lasted through every season of life.</p>
+<p>We began as classmates in college, where a simple connection grew into something truly special. Since 2014, we’ve been side by side, navigating life’s ups and downs, growing individually and together. What started as friendship has blossomed into a lasting love built on shared memories, laughter, and unwavering support—and today, we continue our journey, stronger than ever, hand in hand.</p>
 </div></div>
 
+<!-- DETAILS -->
 <div class="section"><div class="section-inner">
 <h2>Wedding Details</h2>
-<div class="divider"></div>
-<div class="details">
-<div class="detail-box"><strong>Date</strong><br>Jan 3, 2027</div>
-<div class="detail-box"><strong>Venue</strong><br>Sodretos Royale</div>
+<div class="details-box">
+<div class="box"><strong>Date</strong><br>Jan 3, 2027</div>
+<div class="box"><strong>Venue</strong><br>Sodretos Royale</div>
 </div>
 <iframe class="map" src="https://www.google.com/maps?q=Sodretos+Royale+Marikina&output=embed"></iframe>
 </div></div>
 
+<!-- GALLERY ADDED -->
+<div class="section"><div class="section-inner">
+<h2>Gallery</h2>
+<p>Our memories together</p>
+
+<div class="gallery">
+  <img src="https://via.placeholder.com/600x600" />
+  <img src="https://via.placeholder.com/600x600" />
+  <img src="https://via.placeholder.com/600x600" />
+  <img src="https://via.placeholder.com/600x600" />
+</div>
+</div></div>
+
+<!-- RSVP -->
 <div class="section"><div class="section-inner">
 <h2>RSVP</h2>
-<div class="divider"></div>
 <form>
 <input placeholder="Full Name" required>
 <input placeholder="Guests" type="number" required>
